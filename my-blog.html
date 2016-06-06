@@ -24,13 +24,23 @@ permalink: /our-blog
 					<h4>All Blog Posts</h4>
 
 					<ul class="side-list">
-					{% assign counter = 0 %}
 					{% for post in site.posts %}
 						{% assign thisyear = post.date | date: "%B %Y" %}
 						{% assign prevyear = post.previous.date | date: "%B %Y" %}
 						{% assign counter = counter | plus: 1 %}
+
 						{% if thisyear != prevyear %}
-						<li><a href="/archive/#{{ post.date | date:"%Y %b" }}">{{ thisyear }} [{{ counter }}]</a></li>
+						<li class="archive"><a>{{ thisyear }}</a> <i class="fa fa-cube"></i>  
+						  [{{counter }}]</li>
+						<li>
+							<ul class="subside-list">
+								{% assign fli = forloop.index | minus: counter %}
+								{% for post in site.posts limit: counter offset: fli %} 
+									<li><a href="{{ post.url }}">{{ post.title }}</a>
+								</li>
+								{% endfor %}
+							</ul>
+						</li> 
 						{% assign counter = 0 %}
 						{% endif %}
 					{% endfor %}
