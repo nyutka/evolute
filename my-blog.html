@@ -30,7 +30,7 @@ permalink: /our-blog
 						{% assign prevyear = post.previous.date | date: "%B %Y" %}
 						{% assign counter = counter | plus: 1 %}
 						{% if thisyear != prevyear %}
-						<li><a href="{{ site.baseurl }}/archive/#{{ post.date | date:"%Y %b" }}">{{ thisyear }} [{{ counter }}]</a></li>
+						<li><a href="{{ site.baseurl }}/archive#{{ post.date | date:"%Y %b" }}">{{ thisyear }} [{{ counter }}]</a></li>
 						{% assign counter = 0 %}
 						{% endif %}
 					{% endfor %}
